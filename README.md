@@ -3,12 +3,21 @@
 
 [![Build Status](https://travis-ci.org/vallentin/detect-lang.svg?branch=master)](https://travis-ci.org/vallentin/detect-lang)
 [![Latest Version](https://img.shields.io/crates/v/detect-lang.svg)](https://crates.io/crates/detect-lang)
-[![Docs](https://docs.rs/detect-lang/badge.svg)](https://docs.rs/detect_lang)
+[![Docs](https://docs.rs/detect-lang/badge.svg)](https://docs.rs/detect-lang)
 [![License](https://img.shields.io/github/license/vallentin/detect-lang.svg)](https://github.com/vallentin/detect-lang)
 
 This crate is a utility for identifying names of programming languages (and related files) from paths and file extensions.
 
 This is **not** a crate for detecting **natural** languages.
+
+## Usage
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+detect-lang = "0.1"
+```
 
 ## Paths and Extensions
 
