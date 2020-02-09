@@ -12,4 +12,7 @@ homepage = "https://github.com/vallentin/detect-lang"
 documentation = "https://docs.rs/detect_lang"
 readme = "README.md"
 
+[badges]
+travis-ci = { repository = "vallentin/detect-lang" }
+
 [dependencies]
