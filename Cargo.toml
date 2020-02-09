@@ -1,6 +1,6 @@
 [package]
 name = "detect-lang"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Christian Vallentin"]
 edition = "2018"
 description = "Language detection given paths and extensions"
@@ -11,6 +11,7 @@ repository = "https://github.com/vallentin/detect-lang"
 homepage = "https://github.com/vallentin/detect-lang"
 documentation = "https://docs.rs/detect_lang"
 readme = "README.md"
+exclude = [".travis.yml"]
 
 [badges]
 travis-ci = { repository = "vallentin/detect-lang" }
