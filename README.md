@@ -18,6 +18,12 @@ Add this to your `Cargo.toml`:
 detect-lang = "0.1"
 ```
 
+## Releases
+
+Release notes are available in the repo at [CHANGELOG.md].
+
+[CHANGELOG.md]: CHANGELOG.md
+
 ## Paths and Extensions
 
 Languages can be identified from paths using [`from_path`]([fn.from_path.html](https://docs.rs/detect_lang/*/detect_lang/fn.from_path.html))
