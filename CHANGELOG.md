@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.4 (2020-02-13)
+
+- Fixed order of `LANGUAGES`
+
 ## Version 0.1.3 (2020-02-13)
 
 - Increased support to 41 languages / file types
