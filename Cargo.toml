@@ -8,8 +8,7 @@ keywords = ["language", "language-name", "lang-id", "path", "extension"]
 categories = ["algorithms"]
 license = "MIT"
 repository = "https://github.com/vallentin/detect-lang"
-homepage = "https://github.com/vallentin/detect-lang"
-documentation = "https://docs.rs/detect_lang"
+documentation = "https://docs.rs/detect-lang"
 readme = "README.md"
 exclude = [".travis.yml"]
 

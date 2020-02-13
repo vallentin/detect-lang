@@ -1,4 +1,3 @@
-
 # detect-lang
 
 [![Build Status](https://travis-ci.org/vallentin/detect-lang.svg?branch=master)](https://travis-ci.org/vallentin/detect-lang)
