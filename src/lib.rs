@@ -54,6 +54,7 @@
 //!
 //! let path = Path::new("foo.rs");
 //! match from_path(path) {
+//!     //   Language(name, id)
 //!     Some(Language(_, "rust")) => println!("This is Rust"),
 //!     Some(Language(..))        => println!("Well it's not Rust"),
 //!     None                      => println!("Ehh, what?"),
@@ -136,10 +137,17 @@ impl<'a> Deref for Language<'a> {
     }
 }
 
-/// Identifies the language from a path.
+/// Identifies a language from a [path extension].
 /// The casing of the extension does not affect the result.
+/// Returns `None` if the language was not identified.
 ///
-/// *Note that `from_path` does not check if the path exists.*
+/// Note that `from_path` does not check if the path exists,
+/// nor does it attempt to load the file.
+///
+/// *[See also `from_extension`][from_extension].*
+///
+/// [from_extension]: fn.from_extension.html
+/// [path extension]: https://doc.rust-lang.org/nightly/std/path/struct.Path.html#method.extension
 ///
 /// # Example
 ///
@@ -153,6 +161,16 @@ impl<'a> Deref for Language<'a> {
 /// // The case is ignored
 /// assert_eq!(from_path("foo.jSoN"), Some(Language("JSON", "json")));
 /// ```
+///
+/// # Unsupported Language
+///
+/// If a language is not supported, then feel free to submit an issue
+/// on the [issue tracker], or add it to [languages.rs] and submit
+/// a [pull request].
+///
+/// [issue tracker]: https://github.com/vallentin/detect-lang/issues
+/// [pull request]: https://github.com/vallentin/detect-lang/pulls
+/// [languages.rs]: https://github.com/vallentin/detect-lang/blob/master/src/languages.rs
 #[inline]
 pub fn from_path<P: AsRef<Path>>(path: P) -> Option<Language<'static>> {
     if let Some(Some(ext)) = path.as_ref().extension().map(OsStr::to_str) {
@@ -164,6 +182,11 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Option<Language<'static>> {
 
 /// Identifies a language from a file extension.
 /// The casing of the extension does not affect the result.
+/// Returns `None` if the language was not identified.
+///
+/// *[See also `from_path`][from_path].*
+///
+/// [from_path]: fn.from_path.html
 ///
 /// # Example
 ///
@@ -177,6 +200,16 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Option<Language<'static>> {
 /// // The case is ignored
 /// assert_eq!(from_extension("jSoN"), Some(Language("JSON", "json")));
 /// ```
+///
+/// # Unsupported Language
+///
+/// If a language is not supported, then feel free to submit an issue
+/// on the [issue tracker], or add it to [languages.rs] and submit
+/// a [pull request].
+///
+/// [issue tracker]: https://github.com/vallentin/detect-lang/issues
+/// [pull request]: https://github.com/vallentin/detect-lang/pulls
+/// [languages.rs]: https://github.com/vallentin/detect-lang/blob/master/src/languages.rs
 #[inline]
 pub fn from_extension<S: AsRef<str>>(extension: S) -> Option<Language<'static>> {
     let ext = extension.as_ref().to_ascii_lowercase();
