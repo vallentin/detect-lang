@@ -29,8 +29,8 @@ Release notes are available in the repo at [CHANGELOG.md].
 Languages can be identified from paths using [`from_path`]
 or directly from extensions using [`from_extension`].
 
-[`from_path`]: https://docs.rs/detect_lang/*/detect_lang/fn.from_path.html
-[`from_extension`]: https://docs.rs/detect_lang/*/detect_lang/fn.from_extension.html
+[`from_path`]: https://docs.rs/detect-lang/*/detect_lang/fn.from_path.html
+[`from_extension`]: https://docs.rs/detect-lang/*/detect_lang/fn.from_extension.html
 
 ```rust
 use detect_lang::from_path;
@@ -54,8 +54,8 @@ However, it also replaces symbols making it usable as a [URL slug].
 For instance `foo.hpp` is identified as language name `C++` and
 language ID `cpp`.
 
-[`id`]: https://docs.rs/detect_lang/*/detect_lang/struct.Language.html#method.id
-[`name`]: https://docs.rs/detect_lang/*/detect_lang/struct.Language.html#method.name
+[`id`]: https://docs.rs/detect-lang/*/detect_lang/struct.Language.html#method.id
+[`name`]: https://docs.rs/detect-lang/*/detect_lang/struct.Language.html#method.name
 [URL slug]: https://en.wikipedia.org/wiki/Clean_URL#Slug
 
 ```rust
@@ -80,7 +80,7 @@ If the extension is guaranteed to always be lowercase,
 then consider using [`from_lowercase_extension`] to avoid
 allocation and conversion to lowercase.
 
-[`from_lowercase_extension`]: https://docs.rs/detect_lang/*/detect_lang/fn.from_lowercase_extension.html
+[`from_lowercase_extension`]: https://docs.rs/detect-lang/*/detect_lang/fn.from_lowercase_extension.html
 
 ```rust
 use detect_lang::{from_extension, from_lowercase_extension, Language};
