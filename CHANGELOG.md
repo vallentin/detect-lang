@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.5 (2020-??-??)
+
+- Added `from_lowercase_extension`
+
 ## Version 0.1.4 (2020-02-13)
 
 - Fixed order of `LANGUAGES`

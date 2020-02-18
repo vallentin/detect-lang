@@ -26,8 +26,11 @@ Release notes are available in the repo at [CHANGELOG.md].
 
 ## Paths and Extensions
 
-Languages can be identified from paths using [`from_path`]([fn.from_path.html](https://docs.rs/detect_lang/*/detect_lang/fn.from_path.html))
-or directly from extensions using [`from_extension`]([fn.from_extension.html](https://docs.rs/detect_lang/*/detect_lang/fn.from_extension.html)).
+Languages can be identified from paths using [`from_path`]
+or directly from extensions using [`from_extension`].
+
+[`from_path`]: https://docs.rs/detect_lang/*/detect_lang/fn.from_path.html
+[`from_extension`]: https://docs.rs/detect_lang/*/detect_lang/fn.from_extension.html
 
 ```rust
 use detect_lang::from_path;
@@ -45,13 +48,14 @@ assert_eq!(from_extension("jSoN").unwrap().name(), "JSON");
 
 ## Language ID
 
-In short, the language [`id`](https://docs.rs/detect_lang/*/detect_lang/struct.Language.html#method.id)
-is a lowercase version of [`name`](https://docs.rs/detect_lang/*/detect_lang/struct.Language.html#method.name).
+In short, the language [`id`] is a lowercase version of [`name`].
 However, it also replaces symbols making it usable as a [URL slug].
 
 For instance `foo.hpp` is identified as language name `C++` and
 language ID `cpp`.
 
+[`id`]: https://docs.rs/detect_lang/*/detect_lang/struct.Language.html#method.id
+[`name`]: https://docs.rs/detect_lang/*/detect_lang/struct.Language.html#method.name
 [URL slug]: https://en.wikipedia.org/wiki/Clean_URL#Slug
 
 ```rust
@@ -70,6 +74,24 @@ assert_eq!(from_path("foo.jSoN").unwrap().id(), "json");
 assert_eq!(from_extension("jSoN").unwrap().id(), "json");
 ```
 
+## Always Lowercase
+
+If the extension is guaranteed to always be lowercase,
+then consider using [`from_lowercase_extension`] to avoid
+allocation and conversion to lowercase.
+
+[`from_lowercase_extension`]: https://docs.rs/detect_lang/*/detect_lang/fn.from_lowercase_extension.html
+
+```rust
+use detect_lang::{from_extension, from_lowercase_extension, Language};
+
+assert_eq!(from_lowercase_extension("json"), Some(Language("JSON", "json")));
+assert_eq!(from_lowercase_extension("jSoN"), None);
+
+assert_eq!(from_extension("json"), Some(Language("JSON", "json")));
+assert_eq!(from_extension("jSoN"), Some(Language("JSON", "json")));
+```
+
 ## Match Example
 
 ```rust
@@ -78,6 +100,7 @@ use detect_lang::{from_path, Language};
 
 let path = Path::new("foo.rs");
 match from_path(path) {
+    //   Language(name, id)
     Some(Language(_, "rust")) => println!("This is Rust"),
     Some(Language(..))        => println!("Well it's not Rust"),
     None                      => println!("Ehh, what?"),

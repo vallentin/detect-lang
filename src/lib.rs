@@ -2,8 +2,11 @@
 //!
 //! # Paths and Extensions
 //!
-//! Languages can be identified from paths using [`from_path`](fn.from_path.html)
-//! or directly from extensions using [`from_extension`](fn.from_extension.html).
+//! Languages can be identified from paths using [`from_path`]
+//! or directly from extensions using [`from_extension`].
+//!
+//! [`from_path`]: fn.from_path.html
+//! [`from_extension`]: fn.from_extension.html
 //!
 //! ```
 //! use detect_lang::from_path;
@@ -44,6 +47,25 @@
 //! // The case is ignored
 //! assert_eq!(from_path("foo.jSoN").unwrap().id(), "json");
 //! assert_eq!(from_extension("jSoN").unwrap().id(), "json");
+//! ```
+//!
+//! # Always Lowercase
+//!
+//! If the extension is guaranteed to always be lowercase,
+//! then consider using [`from_lowercase_extension`] to avoid
+//! allocation and conversion to lowercase.
+//!
+//! [`from_lowercase_extension`]: fn.from_lowercase_extension.html
+//!
+//! ```
+//! # use detect_lang::{from_extension};
+//! use detect_lang::{from_lowercase_extension, Language};
+//!
+//! assert_eq!(from_lowercase_extension("json"), Some(Language("JSON", "json")));
+//! assert_eq!(from_lowercase_extension("jSoN"), None);
+//!
+//! assert_eq!(from_extension("json"), Some(Language("JSON", "json")));
+//! assert_eq!(from_extension("jSoN"), Some(Language("JSON", "json")));
 //! ```
 //!
 //! # Match Example
@@ -186,7 +208,12 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Option<Language<'static>> {
 ///
 /// *[See also `from_path`][from_path].*
 ///
+/// If the extension is guaranteed to always be lowercase,
+/// then consider using [`from_lowercase_extension`] to avoid
+/// allocation and conversion to lowercase.
+///
 /// [from_path]: fn.from_path.html
+/// [`from_lowercase_extension`]: fn.from_lowercase_extension.html
 ///
 /// # Example
 ///
@@ -213,8 +240,47 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Option<Language<'static>> {
 #[inline]
 pub fn from_extension<S: AsRef<str>>(extension: S) -> Option<Language<'static>> {
     let ext = extension.as_ref().to_ascii_lowercase();
+    from_lowercase_extension(ext)
+}
+
+/// Identifies a language from a lowercase file extension.
+/// Returns `None` if the language was not identified.
+///
+/// If the extension is not guaranteed to always be lowercase,
+/// then use [`from_extension`] instead.
+///
+/// *[See also `from_path`][from_path].*
+///
+/// [from_path]: fn.from_path.html
+/// [`from_extension`]: fn.from_extension.html
+///
+/// # Example
+///
+/// ```
+/// # use detect_lang::{from_extension, from_lowercase_extension, Language};
+/// assert_eq!(from_lowercase_extension("rs"), Some(Language("Rust", "rust")));
+/// assert_eq!(from_lowercase_extension("md"), Some(Language("Markdown", "markdown")));
+/// assert_eq!(from_lowercase_extension("cpp"), Some(Language("C++", "cpp")));
+/// assert_eq!(from_lowercase_extension("unknown"), None);
+///
+/// // Use `from_extension` if casing should be ignored
+/// assert_eq!(from_lowercase_extension("jSoN"), None);
+/// assert_eq!(from_extension("jSoN"), Some(Language("JSON", "json")));
+/// ```
+///
+/// # Unsupported Language
+///
+/// If a language is not supported, then feel free to submit an issue
+/// on the [issue tracker], or add it to [languages.rs] and submit
+/// a [pull request].
+///
+/// [issue tracker]: https://github.com/vallentin/detect-lang/issues
+/// [pull request]: https://github.com/vallentin/detect-lang/pulls
+/// [languages.rs]: https://github.com/vallentin/detect-lang/blob/master/src/languages.rs
+#[inline]
+pub fn from_lowercase_extension<S: AsRef<str>>(extension: S) -> Option<Language<'static>> {
     LANGUAGES
-        .binary_search_by_key(&ext.as_str(), |&(ext, _)| ext)
+        .binary_search_by_key(&extension.as_ref(), |&(ext, _)| ext)
         .ok()
         .map(|i| LANGUAGES[i].1)
 }
