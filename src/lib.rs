@@ -169,7 +169,7 @@ impl<'a> Deref for Language<'a> {
 /// *[See also `from_extension`][from_extension].*
 ///
 /// [from_extension]: fn.from_extension.html
-/// [path extension]: https://doc.rust-lang.org/nightly/std/path/struct.Path.html#method.extension
+/// [path extension]: https://doc.rust-lang.org/stable/std/path/struct.Path.html#method.extension
 ///
 /// # Example
 ///
