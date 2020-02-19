@@ -8,7 +8,10 @@
 
 - Fixed order of `LANGUAGES`
 
-## Version 0.1.3 (2020-02-13)
+
+## ~~Version 0.1.3 (2020-02-13)~~ - Yanked
+
+This release was yanked as `LANGUAGES` was ordered incorrectly, resulting in the binary search not being able to find all languages.
 
 - Increased support to 41 languages / file types
 - Increased support to 58 extensions
