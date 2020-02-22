@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.1.5 (2020-??-??)
+## Version 0.1.5 (2020-02-22)
 
 - Added `from_lowercase_extension`
 
