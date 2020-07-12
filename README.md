@@ -1,5 +1,6 @@
 # detect-lang
 
+[![Build Status](https://github.com/vallentin/detect-lang/workflows/Rust/badge.svg)](https://github.com/vallentin/detect-lang/actions?query=workflow%3ARust)
 [![Build Status](https://travis-ci.org/vallentin/detect-lang.svg?branch=master)](https://travis-ci.org/vallentin/detect-lang)
 [![Latest Version](https://img.shields.io/crates/v/detect-lang.svg)](https://crates.io/crates/detect-lang)
 [![Docs](https://docs.rs/detect-lang/badge.svg)](https://docs.rs/detect-lang)
