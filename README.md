@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-detect-lang = "0.1"
+detect-lang = "0.1.5"
 ```
 
 ## Releases
